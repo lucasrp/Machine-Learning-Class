@@ -20,9 +20,10 @@ grad = zeros(size(theta));
 [J grad] = costFunction(theta, X, y);
 
 J = J + (lambda/(2*m))*sum(theta.*theta);
+regularizator_factor_theta = [0; (lambda/m)*theta(:, 2:end)];
+grad = (1/m)*X'*(sigmoid(X*theta)-y) + regularizator_factor_theta;
 
-for i = 2:size(theta)
-    grad(i) = grad(i) + (lambda/m)*theta(i) ;
+
 
 
 
